@@ -36,10 +36,10 @@ const render = () => {
     const clipTop = ((1 - progress) * 100).toFixed(1);
     progressBg.style.setProperty('--clip-top', clipTop + '%');
     
-    // Update progress bar fill
-    const progressPercent = (progress * 100).toFixed(1);
+    // Update progress bar fill - 소수점 최대한 많이
+    const progressPercent = (progress * 100);
     progressBarFill.style.width = progressPercent + '%';
-    progressText.textContent = progressPercent + '%';
+    progressText.textContent = progressPercent.toLocaleString('en-US', { maximumFractionDigits: 20 }) + '%';
 
     // Format with leading zeros
     const formatNumber = (num) => String(num).padStart(2, '0');
@@ -56,7 +56,7 @@ const render = () => {
         clock.innerHTML = `
             <span class="countdown-item">
                 <span class="countdown-number">
-                    <span class="number-slide ${dayChanged ? 'animate' : ''}"> ${formatNumber(day)}</span>
+                    <span class="number-slide ${dayChanged ? 'animate' : ''}">${formatNumber(day)}</span>
                 </span>
                 <span class="countdown-label">일</span>
             </span>
