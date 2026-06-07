@@ -41,9 +41,6 @@ body {
     min-height: 100vh;
     position: relative;
     z-index: 1;
-    @supports (-webkit-touch-callout: none) {
-      min-height: -webkit-fill-available;
-    }
 }
 
 .real-time-clock {

@@ -9,11 +9,19 @@
     <title>그가 집에 갈수있을까요?</title>
 </head>
 <body> 
+    <div class="progress-background" id="progressBg"></div>
+    
     <div class="container">
-        😂😂😂😂😂😂😂😂😂😂😂😂😂😂😂
-        <h1 class="real-time-clock"></h1>
+        <h1 class="real-time-clock" id="clock">로딩중...</h1>
     </div>
-    <script src="./js/index.js"></script>
 
+    <div class="progress-indicator">
+        <div class="progress-bar-indicator">
+            <div class="progress-bar-fill" id="progressBarFill"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
+    </div>
+
+    <script src="./js/index.js"></script>
 </body>
 </html>
