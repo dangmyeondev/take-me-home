@@ -4,7 +4,7 @@ const progressBarFill = document.getElementById("progressBarFill");
 const progressText = document.getElementById("progressText");
 
 const targetDate = new Date("2027-12-07");
-const startDate = new Date("2024-06-07");
+const startDate = new Date("2026-06-08"); // 프로그레스바 시작일
 const totalTime = targetDate.getTime() - startDate.getTime();
 
 const calculate = (dday) => {
@@ -44,40 +44,37 @@ const render = () => {
     // Format with leading zeros
     const formatNumber = (num) => String(num).padStart(2, '0');
 
-    // Check if values changed
-    const hasChanged = 
-        lastValues.day !== day || 
-        lastValues.hours !== hours || 
-        lastValues.minutes !== minutes || 
-        lastValues.seconds !== seconds;
+    // Check which values changed
+    const dayChanged = lastValues.day !== day;
+    const hoursChanged = lastValues.hours !== hours;
+    const minutesChanged = lastValues.minutes !== minutes;
+    const secondsChanged = lastValues.seconds !== seconds;
 
-    if (hasChanged) {
+    if (dayChanged || hoursChanged || minutesChanged || secondsChanged) {
         lastValues = { day, hours, minutes, seconds };
         
-        // Create HTML with animation key to trigger animation
-        const key = Date.now();
         clock.innerHTML = `
             <span class="countdown-item">
                 <span class="countdown-number">
-                    <span class="number-slide" key="${key}-day">${formatNumber(day)}</span>
+                    <span class="number-slide ${dayChanged ? 'animate' : ''}"> ${formatNumber(day)}</span>
                 </span>
                 <span class="countdown-label">일</span>
             </span>
             <span class="countdown-item">
                 <span class="countdown-number">
-                    <span class="number-slide" key="${key}-hours">${formatNumber(hours)}</span>
+                    <span class="number-slide ${hoursChanged ? 'animate' : ''}">${formatNumber(hours)}</span>
                 </span>
                 <span class="countdown-label">시간</span>
             </span>
             <span class="countdown-item">
                 <span class="countdown-number">
-                    <span class="number-slide" key="${key}-minutes">${formatNumber(minutes)}</span>
+                    <span class="number-slide ${minutesChanged ? 'animate' : ''}">${formatNumber(minutes)}</span>
                 </span>
                 <span class="countdown-label">분</span>
             </span>
             <span class="countdown-item">
                 <span class="countdown-number">
-                    <span class="number-slide" key="${key}-seconds">${formatNumber(seconds)}</span>
+                    <span class="number-slide ${secondsChanged ? 'animate' : ''}">${formatNumber(seconds)}</span>
                 </span>
                 <span class="countdown-label">초</span>
             </span>
